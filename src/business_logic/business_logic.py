@@ -5,5 +5,5 @@ class BusinessLogic:
         self.vk_service = VkService()
         self.token = token
 
-    def search_doc(self, search, own_docs=False):
-        return self.vk_service.search_docs(search, own_docs, self.token)
+    def search_doc(self, search, limit, offset, own_docs=True):
+        return self.vk_service.search_docs(search, limit, offset, own_docs, self.token)

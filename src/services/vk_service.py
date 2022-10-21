@@ -23,16 +23,21 @@ class VkService:
     def get_docs(self, token):
         vk = self.auth(token)
         response = vk.docs.get()  # Используем метод wall.get
-        print(vk.docs)
+        # print(vk.docs)
 
         if response['items']:
             return response['items']
 
-    def search_docs(self, search, own_docs, token):
+    def search_docs(self, search, limit, offset, own_docs, token):
         vk = self.auth(token)
         docs = []
-        docs = vk.docs.search(q=search, search_own=own_docs)
-        print(docs)
+
+        if own_docs == True:
+            own_docs = 1
+        else:
+            own_docs = 0
+
+        docs = vk.docs.search(q=search, search_own=own_docs, limit=limit, offset=offset)
         if docs != []:
             return docs['items']
 
